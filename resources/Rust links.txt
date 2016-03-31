@@ -1,2 +1,0 @@
-Useful links for info on Rust:
-----------------------------------
