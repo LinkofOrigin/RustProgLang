@@ -1,24 +1,25 @@
-var views;
+var views = ["index.html", "examples.html", "features.html", "history.html", "versions.html"];
+var viewLookup;
+var currentTabIndex = 0;
 
-function createLookup(viewList){
+function createLookup(){
     var lookup = [];
     var head = [];
     var tail = [];
-    var size = viewList.length;
-    viewList.unshift("index.html");
-    var headName = viewList[0];
-    var tailName = viewList[size-1];
-    head["previous"] = viewList[size-1];
-    head["next"] = viewList[1];
-    tail["previous"] = viewList[size-2];
-    tail["next"] = viewList[0];
+    var size = views.length;
+    var headName = views[0];
+    var tailName = views[size-1];
+    head["previous"] = views[size-1];
+    head["next"] = views[1];
+    tail["previous"] = views[size-2];
+    tail["next"] = views[0];
     lookup[headName] = head;
     lookup[tailName] = tail;
     for(var index = 1; index < size-1; index++){
-        var previous = viewList[getPreviousIndex(index, size)];
-        var next = viewList[getNextIndex(index, size)];
+        var previous = views[getPreviousIndex(index)];
+        var next = views[getNextIndex(index)];
         var item = [];
-        var name = viewList[index];
+        var name = views[index];
         item["previous"] = previous;
         item["next"] = next;
         lookup[name] = item;
@@ -26,27 +27,39 @@ function createLookup(viewList){
     return lookup;
 }
 
-function getNextIndex(index, arraySize){
+function getNextIndex(index){
     var nextIndex = index + 1;
-    return nextIndex < arraySize ? nextIndex : 0;
+    return nextIndex < views.length ? nextIndex : 0;
 }
 
-function getPreviousIndex(index, arraySize){
+function getPreviousIndex(index){
     var previousIndex = index - 1;
-    return previousIndex > 0 ? previousIndex : arraySize-1;
+    return previousIndex > 0 ? previousIndex : views.length-1;
 }
 
 $(function(){
-    views = createLookup(["index.html", "examples.html", "features.html", "history.html", "versions.html"]);
+    viewLookup = createLookup();
+    $("[tabindex]").css("visibility", "hidden");
     $(document).unbind('keypress');
     $(document).keydown(function(e){
+        var appearGroup =  "[tabindex='" + currentTabIndex + "']";
         var right = 39;
         var left = 37;
         var current = window.location.pathname.split('/')[2];
         if(e.which == right){
-            window.location.href = "/RustProgLang/" + views[current]["next"];
+            if($(appearGroup).length){
+                $(appearGroup).css("visibility", "visible");
+                currentTabIndex++;
+            } else {
+                window.location.href = "/RustProgLang/" + viewLookup[current]["next"];
+            }
         } else if(e.which == left){
-            window.location.href = "/RustProgLang/" + views[current]["previous"];
+            if($(appearGroup).length){
+                $(appearGroup).css("visibility", "hidden");
+                currentTabIndex--;
+            } else {
+                window.location.href = "/RustProgLang/" + viewLookup[current]["previous"];
+            }
         }
     })
 });
