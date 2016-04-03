@@ -1,8 +1,11 @@
-var views = ["index.html", "history.html", "versions.html", "features.html", "features/object-ownership.html", "features/conditional-compilation.html", "examples.html"];
+//var views = ["index.html", "history.html", "versions.html", "features.html", "features/object-ownership.html", "features/conditional-compilation.html", "examples.html"];
+var views;
 var viewLookup;
 var currentTabIndex = 0;
 
 function createLookup(){
+    views = parseSidebar();
+    debugger;
     var lookup = [];
     var head = [];
     var tail = [];
@@ -37,6 +40,12 @@ function getPreviousIndex(index){
     return previousIndex > 0 ? previousIndex : views.length-1;
 }
 
+function parseSidebar(){
+    return $('#sidebar a').map(function(){
+        return $(this).attr('href').replace("../", "");
+    });
+}
+
 $(function(){
     viewLookup = createLookup();
     $("[tabindex]").css("visibility", "hidden");
@@ -52,7 +61,6 @@ $(function(){
                 $(appearGroup).css("visibility", "visible");
                 currentTabIndex++;
             } else {
-                debugger;
                 window.location.href = "/RustProgLang/" + viewLookup[current]["next"];
             }
         } else if(e.which == left){
