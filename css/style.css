@@ -41,6 +41,11 @@ header hr {
     border-right: 2px solid black;
 }
 
+#content {
+    display: inline-block;
+    height: 100%;
+}
+
 #sidebar a {
     color: black;
     text-decoration: none;
@@ -51,6 +56,17 @@ header hr {
     padding: 10px;
 }
 
+#sidebar h5 {
+    margin: 0;
+    padding-left: 20px;
+    padding-bottom: 10px;
+    padding-right: 5px;
+}
+
 #sidebar hr {
     margin: 0;
+}
+
+#selected {
+    background-color: #4e84a2;
 }
