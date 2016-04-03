@@ -1,4 +1,4 @@
-var views = ["index.html", "examples.html", "features.html", "history.html", "versions.html"];
+var views = ["index.html", "history.html", "versions.html", "features.html", "features/object-ownership.html", "features/conditional-compilation.html", "examples.html"];
 var viewLookup;
 var currentTabIndex = 0;
 
@@ -45,12 +45,14 @@ $(function(){
         var appearGroup =  "[tabindex='" + currentTabIndex + "']";
         var right = 39;
         var left = 37;
-        var current = window.location.pathname.split('/')[2];
+        var urlComponents = window.location.pathname.split('/');
+        var current = urlComponents[2] + (urlComponents.length == 4 ? "/" + urlComponents[3] : "");
         if(e.which == right){
             if($(appearGroup).length){
                 $(appearGroup).css("visibility", "visible");
                 currentTabIndex++;
             } else {
+                debugger;
                 window.location.href = "/RustProgLang/" + viewLookup[current]["next"];
             }
         } else if(e.which == left){
