@@ -1,0 +1,28 @@
+/*
+	Source: http://rustbyexample.com/custom_types/enum/testcase_linked_list.html
+*/
+
+use List::*;
+
+pub enum List {
+	Cons(i32, Box<List>),
+	NULL,
+}
+
+impl List {
+	fn new() -> List {
+		NULL
+	}
+
+	pub fn add(self, newData: i32) -> List {
+        println!("Added {} to the list.", newData);
+		Cons(newData, Box::new(self))
+	}
+}
+
+fn main() {
+	let mut list = List::new();
+	list = list.add(1);
+	list = list.add(2);
+	list = list.add(3);
+}
