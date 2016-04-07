@@ -1,11 +1,11 @@
-//var views = ["index.html", "history.html", "versions.html", "features.html", "features/object-ownership.html", "features/conditional-compilation.html", "examples.html"];
+//var views = ["index.html", "history.html", "features.html", "features/object-ownership.html", "features/conditional-compilation.html", "examples.html"];
 var views;
 var viewLookup;
 var currentTabIndex = 0;
 
 function createLookup(){
     views = parseSidebar();
-    debugger;
+    //debugger;
     var lookup = [];
     var head = [];
     var tail = [];
