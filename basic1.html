@@ -1,0 +1,67 @@
+<html>
+<head>
+    <title>Rust Programming Language</title>
+    <link href="imgs/favicon.ico" type="image/png" rel="shortcut icon">
+    
+    <link href="css/style.css" rel="stylesheet">
+    
+    <script src="js/jquery-2.2.2.js"></script>
+    <script src="js/script.js"></script>
+</head>
+<body>
+
+<header>
+    <a href="index.html"><img width="70" id="headerImg" src="imgs/favicon.ico"></a>
+    <h1>Rust Programming Language</h1>
+    <h2>Jesse Rupe ~ Will Ross ~ Jake Blow</h2>
+    <hr>
+</header>
+
+<div id="sidebar">
+    <a href="index.html" style="display: none">
+        <h3>Index</h3>
+    </a>
+    <a href="history.html">
+        <h3>History</h3>
+    </a>
+    <hr>
+    <a href="features.html">
+        <h3>Features</h3>
+    </a>
+    <a href="basic1.html">
+        <h5 id="selected">Basic1</h5>
+    </a>
+    <a href="structsmethods.html">
+        <h5>Structs<br>&amp; Methods</h5>
+    </a>
+    <a href="basic3.html">
+        <h5>Basic3</h5>
+    </a>
+    <a href="object-ownership.html">
+        <h5>Object<br>Ownership</h5>
+    </a>
+    <a href="conditional-compilation.html">
+        <h5>Conditional<br>Compilation</h5>
+    </a>
+    <a href="advance3.html">
+        <h5>Advance3</h5>
+    </a>
+
+</div>
+<div id="content">
+    <h2>Intro to Rust</h2>
+    <div id="contentDetails">
+        <p>Hi there, and welcome to Rust!</p>
+        
+        <br>
+        <p>temp code example</p>
+<pre><span>let x = 5;</span>
+<span>let raw = &x as *const i32;</span>
+
+<span>let points_at = unsafe { *raw };</span>
+
+<span>println!("raw points at {}", points_at);</span></pre>
+    </div>
+</div>
+</body>
+</html>

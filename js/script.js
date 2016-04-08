@@ -55,20 +55,29 @@ $(function(){
         var right = 39;
         var left = 37;
         var urlComponents = window.location.pathname.split('/');
+        var res = new RegExp("\/[A-Za-z0-9]+.html", "i");
+        var arr = res.exec(window.location.href);
+        var home = window.location.href;
+        if(arr) {
+            home = window.location.href.substring(0,arr["index"]+1);
+        }
         var current = urlComponents[2] + (urlComponents.length == 4 ? "/" + urlComponents[3] : "");
+	    if(current === "") {
+		    current = "index.html";
+	    }
         if(e.which == right){
             if($(appearGroup).length){
                 $(appearGroup).css("visibility", "visible");
                 currentTabIndex++;
             } else {
-                window.location.href = "/RustProgLang/" + viewLookup[current]["next"];
+                window.location.href = home + viewLookup[current]["next"];
             }
         } else if(e.which == left){
             if($(appearGroup).length){
                 $(appearGroup).css("visibility", "hidden");
                 currentTabIndex--;
             } else {
-                window.location.href = "/RustProgLang/" + viewLookup[current]["previous"];
+                window.location.href = home + viewLookup[current]["previous"];
             }
         }
     })
