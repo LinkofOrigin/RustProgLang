@@ -1,0 +1,152 @@
+<html>
+<head>
+	<title>Rust Programming Language</title>
+	<link href="imgs/favicon.ico" type="image/png" rel="shortcut icon">
+	
+	<link href="css/style.css" rel="stylesheet">
+	
+	<script src="js/jquery-2.2.2.js"></script>
+	<script src="js/script.js"></script>
+</head>
+<body>
+
+<header>
+	<a href="index.html"><img width="70" id="headerImg" src="imgs/favicon.ico"></a>
+	<h1>Rust Programming Language</h1>
+	<h2>Jesse Rupe ~ Will Ross ~ Jake Blow</h2>
+	<hr>
+</header>
+
+<div id="sidebar">
+	<a href="index.html" style="display: none">
+		<h3>Index</h3>
+	</a>
+	<a href="history.html">
+		<h3>History</h3>
+	</a>
+	<hr>
+	<a href="features.html">
+		<h3>Features</h3>
+	</a>
+	<a href="basic1.html">
+		<h5>Basic1</h5>
+	</a>
+	<a href="structsenums.html">
+		<h5 id="selected">Structs<br>&amp; Enums</h5>
+	</a>
+	<a href="basic3.html">
+		<h5>Basic3</h5>
+	</a>
+	<a href="object-ownership.html">
+		<h5>Object<br>Ownership</h5>
+	</a>
+	<a href="advance2.html">
+		<h5>Conditional<br>Compilation</h5>
+	</a>
+	<a href="advance3.html">
+		<h5>Advance3</h5>
+	</a>
+
+</div>
+
+<div id="content">
+	<h2>Structs and Enums</h2>
+	<div id="contentDetails">
+		<div id="contentLeft">
+			<p><code>enum</code>s allow custom data types.</p>
+			<p><code>struct</code>s allow multiple members within one object.</p>
+			<br>
+<pre>enum MyType {
+  Data1,
+  Data2(Box&lt;MyType&gt;),
+  NULL,
+}
+	
+struct MyObject {
+  myNum: i32,
+  myStr: &str,
+}
+
+fn main() {
+  let myStuff = MyObject { myNum: 3, myStr: "foo" };
+  let myKind = MyType::Data1;
+}
+</pre>
+		</div>
+		<div id="contentDivide"></div>
+		<div id="contentRight">
+			<p><a href="http://rustbyexample.com/custom_types/enum/testcase_linked_list.html">Linked List</a> -
+				functional style</p>
+			<br>
+<pre class="small">use List::*;
+
+enum List {
+    // Cons: Tuple struct that wraps an element and a pointer to the next node
+    Cons(u32, Box&lt;List&gt;),
+	// Nil: A node that signifies the end of the linked list
+	Nil,
+}
+
+// Methods can be attached to an enum
+impl List {
+	// Create an empty list
+	fn new() -> List {
+		// `Nil` has type `List`
+		Nil
+	}
+	
+	// Consume a list, and return the same list with a new element at its front
+	fn prepend(self, elem: u32) -> List {
+		// `Cons` also has type List
+		Cons(elem, Box::new(self))
+	}
+	
+	// Return the length of the list
+	fn len(&self) -> u32 {
+	// `self` has to be matched, because the behavior of this method
+	// depends on the variant of `self`
+	// `self` has type `&List`, and `*self` has type `List`, matching on a
+	// concrete type `T` is preferred over a match on a reference `&T`
+	match *self {
+		// Can't take ownership of the tail, because `self` is borrowed;
+		// instead take a reference to the tail
+		Cons(_, ref tail) => 1 + tail.len(),
+		// Base Case: An empty list has zero length
+		Nil => 0
+		}
+	}
+	
+	// Return representation of the list as a (heap allocated) string
+	fn stringify(&self) -> String {
+		match *self {
+			Cons(head, ref tail) => {
+				// `format!` is similar to `print!`, but returns a heap
+				// allocated string instead of printing to the console
+				format!("{}, {}", head, tail.stringify())
+			},
+			Nil => {
+				format!("Nil")
+			},
+		}
+	}
+}
+
+fn main() {
+	// Create an empty linked list
+	let mut list = List::new();
+	
+	// Append some elements
+	list = list.prepend(1);
+	list = list.prepend(2);
+	list = list.prepend(3);
+	
+	// Show the final state of the list
+	println!("linked list has length: {}", list.len());
+	println!("{}", list.stringify());
+}
+</pre>
+		</div>
+	</div>
+</div>
+</body>
+</html>

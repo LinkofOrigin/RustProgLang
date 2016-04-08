@@ -8,8 +8,7 @@ body {
 }
 
 pre {
-    display: inline-block;
-    font-family: "Source Code Pro", Menlo, Monaco, Consolas, "DejaVu Sans Mono", monospace;
+    font-family: "Source Code Pro", Menlo, Monaco, Consolas, "DejaVu Sans Mono", monospace; /* From Rust site */
     background-color: #f7f7f7;
     border-radius: 3px;
     padding: 5px 20px;
@@ -17,6 +16,10 @@ pre {
     word-break: break-all;
     word-wrap: break-word;
     overflow: auto;
+}
+
+.fill {
+    width: 80%;
 }
 
 header {
@@ -49,31 +52,6 @@ header hr {
     margin: 0;
 }
 
-#content {
-    display: inline-block;
-    width: 80%;
-    float: left;
-    height: 100%;
-}
-
-#content h2 {
-    margin-left: 20px;
-}
-
-#contentDetails {
-    width: 100%;
-    min-height: 500px;
-    margin-left: 40px;
-    padding: 10px;
-    border-radius: 4px;
-    border: 2px solid #C4C4C4;
-}
-
-#contentDetails p {
-    margin: 0;
-    font-size: 18px;
-}
-
 #sidebar {
     display: inline-block;
     float: left;
@@ -103,4 +81,57 @@ header hr {
 
 #selected {
     background-color: #4e84a2;
+}
+
+#content {
+    display: inline-block;
+    position: relative;
+    width: 80%;
+    float: left;
+    height: 100%;
+}
+
+#contentDetails {
+    width: 100%;
+    min-height: 500px;
+    margin-left: 40px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 2px solid #C4C4C4;
+}
+
+#contentLeft {
+    float: left;
+    width: 45%;
+    height: 500px;
+    overflow: auto;
+}
+
+#contentDivide {
+    /*position: absolute;*/
+    float: left;
+    width: 0;
+    height: 500px;
+    margin: 0 3%;
+    border: 1px solid black;
+}
+
+#contentRight {
+    float: left;
+    width: 45%;
+    height: 500px;
+    overflow: auto;
+}
+
+#content h2 {
+    margin-left: 20px;
+}
+
+#contentDetails p {
+    margin: 0;
+    font-size: 18px;
+}
+
+.small {
+    font-size: 12px;
 }
