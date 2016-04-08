@@ -55,7 +55,7 @@ $(function(){
         var right = 39;
         var left = 37;
         var urlComponents = window.location.pathname.split('/');
-        var res = new RegExp("\/[A-Za-z0-9]+.html", "i");
+        var res = new RegExp("\/[A-Za-z0-9-]+.html", "i");
         var arr = res.exec(window.location.href);
         var home = window.location.href;
         if(arr) {
