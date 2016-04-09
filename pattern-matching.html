@@ -56,11 +56,17 @@
         <div id="contentLeft">
             <p tabindex="0">Rust has no <code>switch</code> statement.</p>
             <br>
-            <p tabindex="1">Instead, <code>match</code> is used</p>
+            <p tabindex="1">Instead, <code>match</code> is used.</p>
             <br>
-            <p>The match keyword allows for powerful control flow.</p>
+            <p tabindex="4">Enforced exhaustive checking.</p>
             <br>
-            <p>A basic match can function almost identically </p>
+            <p tabindex="5">'_' is a catch-all, much like 'default'.</p>
+            <br>
+            <p tabindex="8">Multiple and range matching.</p>
+            <br>
+            <p tabindex="100">The match keyword allows for powerful control flow.</p>
+            <br>
+            <p tabindex="100">A basic match can function almost identically </p>
             <br>
 <pre>
 </pre>
@@ -76,11 +82,9 @@
     <span class="number">2</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"two"</span>),
     <span class="number">3</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"three"</span>),
     <span class="number">4</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"four"</span>),
-    <span class="number">5</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"five"</span>),
-    <span tabindex="4">_ <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"something else"</span>),</span>
+    <span class="number">5</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"five"</span>),<span tabindex="8" class="displayStyle_none"><br>    <span class="number">6 ... 9</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"six through nine"</span>),</span><span tabindex="8" class="displayStyle_none"><br>    <span class="number">0 | 10</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"zero or ten"</span>),</span><span tabindex="6" class="displayStyle_none"><br>    _ <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"something else"</span>),</span>
 }
-<span class="hideOn_5" tabindex="3"><span class="error">error:</span> <span>non-exhaustive patterns: `_` not covered</span></span>
-<span tabindex="5"><span class="success">Success!</span></span>
+<span class="hideOn_7 displayStyle_none" tabindex="3"><span class="error">error:</span> <span>non-exhaustive patterns: `_` not covered</span></span><span tabindex="7" class="displayStyle_none"><br><span class="success">Success!</span></span>
 </pre>
         </div>
     </div>
