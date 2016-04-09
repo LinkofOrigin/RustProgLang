@@ -51,7 +51,6 @@ $(function(){
     $("[tabindex]").css("visibility", "hidden");
     $(document).unbind('keypress');
     $(document).keydown(function(e){
-        debugger;
         var appearGroup = "[tabindex='" + currentTabIndex + "']";
         var disappearGroup = ".hideOn_" + currentTabIndex;
         var right = 39;
