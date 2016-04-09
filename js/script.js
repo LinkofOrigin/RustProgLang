@@ -51,7 +51,9 @@ $(function(){
     $("[tabindex]").css("visibility", "hidden");
     $(document).unbind('keypress');
     $(document).keydown(function(e){
-        var appearGroup =  "[tabindex='" + currentTabIndex + "']";
+        debugger;
+        var appearGroup = "[tabindex='" + currentTabIndex + "']";
+        var disappearGroup = ".hideOn_" + currentTabIndex;
         var right = 39;
         var left = 37;
         var urlComponents = window.location.pathname.split('/');
@@ -68,6 +70,7 @@ $(function(){
         if(e.which == right){
             if($(appearGroup).length){
                 $(appearGroup).css("visibility", "visible");
+                $(disappearGroup).css("visibility", "hidden");
                 currentTabIndex++;
             } else {
                 window.location.href = home + viewLookup[current]["next"];
