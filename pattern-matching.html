@@ -54,9 +54,12 @@
     <h2>Pattern Matching</h2>
     <div id="contentDetails">
         <div id="contentLeft">
-            <p>Rust has no switch statement.</p>
-            <p>Instead, match it used</p>
+            <p tabindex="0">Rust has no <code>switch</code> statement.</p>
+            <br>
+            <p tabindex="1">Instead, <code>match</code> is used</p>
+            <br>
             <p>The match keyword allows for powerful control flow.</p>
+            <br>
             <p>A basic match can function almost identically </p>
             <br>
 <pre>
@@ -64,19 +67,21 @@
         </div>
         <div id="contentDivide"></div>
         <div id="contentRight">
-            <p><a href="https://doc.rust-lang.org/book/match.html">Match</a> -
-                powerful control flow</p>
-<pre class="rust rust-example-rendered small">
+            <p tabindex="2">Using <a href="https://doc.rust-lang.org/book/match.html">match</a> in place of switch</p>
+<pre class="rust rust-example-rendered small" tabindex="2">
 <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="number">5</span>;
 
-<span class="kw">match</span><span class="ident">x</span> {
+<span class="kw">match</span> <span class="ident">x</span> {
     <span class="number">1</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"one"</span>),
     <span class="number">2</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"two"</span>),
     <span class="number">3</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"three"</span>),
     <span class="number">4</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"four"</span>),
     <span class="number">5</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"five"</span>),
-    _ <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"something else"</span>),
-}</pre>
+    <span tabindex="4">_ <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"something else"</span>),</span>
+}
+<span class="hideOn_5" tabindex="3"><span class="error">error:</span> <span>non-exhaustive patterns: `_` not covered</span></span>
+<span tabindex="5"><span class="success">Success!</span></span>
+</pre>
         </div>
     </div>
 </div>
