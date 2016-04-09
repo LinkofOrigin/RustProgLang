@@ -48,11 +48,14 @@ function parseSidebar(){
 
 $(function(){
     viewLookup = createLookup();
+    $(".displayStyle_none[tabindex]").hide();
     $("[tabindex]").css("visibility", "hidden");
     $(document).unbind('keypress');
     $(document).keydown(function(e){
         var appearGroup = "[tabindex='" + currentTabIndex + "']";
+        var addGroup = ".displayStyle_none" + appearGroup;
         var disappearGroup = ".hideOn_" + currentTabIndex;
+        var removeGroup = ".displayStyle_none " + disappearGroup;
         var right = 39;
         var left = 37;
         var urlComponents = window.location.pathname.split('/');
@@ -69,7 +72,9 @@ $(function(){
         if(e.which == right){
             if($(appearGroup).length){
                 $(appearGroup).css("visibility", "visible");
+                $(addGroup).show();
                 $(disappearGroup).css("visibility", "hidden");
+                $(removeGroup).hide();
                 currentTabIndex++;
             } else {
                 window.location.href = home + viewLookup[current]["next"];
