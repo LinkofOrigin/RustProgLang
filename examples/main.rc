@@ -1,3 +1,18 @@
 fn main() {
-	println!("Hello, world!");
+	let x = 1;
+	x = 2; // error
+	
+	let mut y = 5;
+	y = 10; // There we go!
+	
+	let a = true;            // boolean
+	let b = 'b';             // char, four bytes - Unicode
+	let c = 123;             // integer
+	let d = 1.23;            // floating point
+	let e = [1, 2, 3];       // array (fixed size)
+	let f = "Hello, World!"; // string
+	let g = (1, "Hello");    // tuple
+	
+	fn foo(x: i32) -> i32 { x } // function
+	let x = foo;                // function pointer
 }
