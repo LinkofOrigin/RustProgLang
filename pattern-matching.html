@@ -9,85 +9,85 @@
     <script src="js/script.js"></script>
 </head>
 <body>
+    <header>
+        <a href="index.html"><img width="70" id="headerImg" src="imgs/favicon.ico"></a>
+        <h1>Rust Programming Language</h1>
+        <h2>Jesse Rupe ~ Will Ross ~ Jake Blow</h2>
+        <hr>
+    </header>
+    <div id="sidebar">
+        <a href="index.html" style="display: none">
+            <h3>Index</h3>
+        </a>
+        <a href="history.html">
+            <h3>History</h3>
+        </a>
+        <hr>
+        <a href="features.html">
+            <h3>Features</h3>
+        </a>
+        <a href="pattern-matching.html">
+            <h5 id="selected">Pattern<br>Matching</h5>
+        </a>
+        <a href="structs-enums.html">
+            <h5>Structs<br>&amp; Enums</h5>
+        </a>
+        <a href="basic3.html">
+            <h5>Basic3</h5>
+        </a>
+        <a href="object-ownership.html">
+            <h5>Object<br>Ownership</h5>
+        </a>
+        <a href="advance2.html">
+            <h5>Advance2</h5>
+        </a>
+        <a href="advance3.html">
+            <h5>Advance3</h5>
+        </a>
+        <a href="conclusion.html">
+            <h5>Conclusion</h5>
+        </a>
+    </div>
+    <div id="content">
+        <h2>Pattern Matching</h2>
+        <div id="contentDetails">
+            <div id="contentLeft">
+                <p tabindex="0">Rust has no <code>switch</code> statement.</p>
+                <br>
+                <p tabindex="1">Instead, <code>match</code> is used.</p>
+                <br>
+                <p tabindex="4">Enforced exhaustive checking.</p>
+                <br>
+                <p tabindex="5">'_' is a catch-all, much like 'default'.</p>
+                <br>
+                <p tabindex="8">Multiple and range matching.</p>
+                <br>
+                <p tabindex="100">The match keyword allows for powerful control flow.</p>
+                <br>
+                <p tabindex="100">Matching on Enums</p>
+                <br>
+            </div>
+            <div id="contentDivide"></div>
+            <div id="contentRight">
+                <p tabindex="2">Using <a href="https://doc.rust-lang.org/book/match.html">match</a> in place of switch</p>
+                <div class="rust rust-example-rendered small" tabindex="2">
+                    <span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="number">5</span>; <br>
 
-<header>
-    <a href="index.html"><img width="70" id="headerImg" src="imgs/favicon.ico"></a>
-    <h1>Rust Programming Language</h1>
-    <h2>Jesse Rupe ~ Will Ross ~ Jake Blow</h2>
-    <hr>
-</header>
-
-<div id="sidebar">
-    <a href="index.html" style="display: none">
-        <h3>Index</h3>
-    </a>
-    <a href="history.html">
-        <h3>History</h3>
-    </a>
-    <hr>
-    <a href="features.html">
-        <h3>Features</h3>
-    </a>
-    <a href="pattern-matching.html">
-        <h5 id="selected">Pattern<br>Matching</h5>
-    </a>
-    <a href="structs-enums.html">
-        <h5>Structs<br>&amp; Enums</h5>
-    </a>
-    <a href="basic3.html">
-        <h5>Basic3</h5>
-    </a>
-    <a href="object-ownership.html">
-        <h5>Object<br>Ownership</h5>
-    </a>
-    <a href="advance2.html">
-        <h5>Advance2</h5>
-    </a>
-    <a href="advance3.html">
-        <h5>Advance3</h5>
-    </a>
-    <a href="conclusion.html">
-        <h5>Conclusion</h5>
-    </a>
-</div>
-<div id="content">
-    <h2>Pattern Matching</h2>
-    <div id="contentDetails">
-        <div id="contentLeft">
-            <p tabindex="0">Rust has no <code>switch</code> statement.</p>
-            <br>
-            <p tabindex="1">Instead, <code>match</code> is used.</p>
-            <br>
-            <p tabindex="4">Enforced exhaustive checking.</p>
-            <br>
-            <p tabindex="5">'_' is a catch-all, much like 'default'.</p>
-            <br>
-            <p tabindex="8">Multiple and range matching.</p>
-            <br>
-            <p tabindex="100">The match keyword allows for powerful control flow.</p>
-            <br>
-            <p tabindex="100">A basic match can function almost identically </p>
-            <br>
-<pre>
-</pre>
-        </div>
-        <div id="contentDivide"></div>
-        <div id="contentRight">
-            <p tabindex="2">Using <a href="https://doc.rust-lang.org/book/match.html">match</a> in place of switch</p>
-<pre class="rust rust-example-rendered small" tabindex="2">
-<span class="kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="number">5</span>;
-
-<span class="kw">match</span> <span class="ident">x</span> {
-    <span class="number">1</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"one"</span>),
-    <span class="number">2</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"two"</span>),
-    <span class="number">3</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"three"</span>),
-    <span class="number">4</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"four"</span>),
-    <span class="number">5</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"five"</span>),<span tabindex="8" class="displayStyle_none"><br>    <span class="number">6 ... 9</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"six through nine"</span>),</span><span tabindex="8" class="displayStyle_none"><br>    <span class="number">0 | 10</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"zero or ten"</span>),</span><span tabindex="6" class="displayStyle_none"><br>    _ <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"something else"</span>),</span>
-}
-<span class="hideOn_7 displayStyle_none" tabindex="3"><span class="error">error:</span> <span>non-exhaustive patterns: `_` not covered</span></span><span tabindex="7" class="displayStyle_none"><br><span class="success">Success!</span></span>
-</pre>
+                    <span class="kw">match</span> <span class="ident">x</span> { <br>
+                        <span class="indent1 number">1</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"one"</span>),<br>
+                        <span class="indent1 number">2</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"two"</span>),<br>
+                        <span class="indent1 number">3</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"three"</span>),<br>
+                        <span class="indent1 number">4</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"four"</span>),<br>
+                        <span class="indent1 number">5</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"five"</span>),<br>
+                        <span tabindex="8" class="indent1 displayStyle_none"><span class="number">6 ... 9</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"six through nine"</span>),<br></span>
+                        <span tabindex="8" class="indent1 displayStyle_none"><span class="number">0 | 10</span> <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"zero or ten"</span>),<br></span>
+                        <span tabindex="6" class="indent1 displayStyle_none">_ <span class="op">=&gt;</span> <span class="macro">println</span><span class="macro">!</span>(<span class="string">"something else"</span>),<br></span>
+                    } <br>
+                    <span class="hideOn_7 displayStyle_none" tabindex="3"><span class="error">error:</span> <span>non-exhaustive patterns: `_` not covered</span></span><br>
+                    <span tabindex="7" class="displayStyle_none"><span class="success">Success!</span></span>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 </body>
 </html>
