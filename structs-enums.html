@@ -55,23 +55,24 @@
 	<h2>Structs and Enums</h2>
 	<div id="contentDetails">
 		<div id="contentLeft">
-			<p><code>enum</code>s allow custom data types.</p>
-			<p><code>struct</code>s allow multiple members within one object.</p>
+			<p><a href="https://doc.rust-lang.org/book/enums.html"><code>enums</code></a> allow custom data types.</p>
+			<p><a href="https://doc.rust-lang.org/book/structs.html"><code>structs</code></a> allow multiple members within one object.</p>
 			<br>
-<pre>enum MyType {
+<pre class="rust rust-example-rendered">
+<span class="kw">enum</span> MyType {
   Data1,
-  Data2(Box&lt;MyType&gt;),
+  Data2(Box&lt;<span class="kw">u32</span>&gt;),
   NULL,
 }
 	
-struct MyObject {
+<span class="kw">struct</span> MyObject {
   myNum: i32,
   myStr: &str,
 }
 
-fn main() {
-  let myStuff = MyObject { myNum: 3, myStr: "foo" };
-  let myKind = MyType::Data1;
+<span class="kw">fn</span> main() {
+  <span class="kw">let</span> myStuff = MyObject { myNum: <span class="number">3</span>, myStr: <span class="string">"foo"</span> };
+  <span class="kw">let</span> myKind = MyType::Data1;
 }
 </pre>
 		</div>
@@ -80,71 +81,71 @@ fn main() {
 			<p><a href="http://rustbyexample.com/custom_types/enum/testcase_linked_list.html">Linked List</a> -
 				functional style</p>
 			<br>
-<pre class="small">use List::*;
+<pre class="rust rust-example-rendered small"><span class="kw">use</span> List::<span class="kw-2">*</span>;
 
-enum List {
-  // Cons: Tuple struct that wraps an element and a pointer to the next node
-  Cons(u32, Box&lt;List&gt;),
-  // Nil: A node that signifies the end of the linked list
+<span class="kw">enum</span> List {
+  <span class="comment">// Cons: Tuple struct that wraps an element and a pointer to the next node</span>
+  Cons(<span class="kw">u32</span>, Box&lt;List&gt;),
+  <span class="comment">// Nil: A node that signifies the end of the linked list</span>
   Nil,
 }
 
-// Methods can be attached to an enum
-impl List {
-  // Create an empty list
-  fn new() -> List {
-    // `Nil` has type `List`
+<span class="comment">// Methods can be attached to an enum</span>
+<span class="kw">impl</span> List {
+  <span class="comment">// Create an empty list</span>
+  <span class="kw">fn</span> <span class="macro">new</span>() <span class="macro-nonterminal">-&gt;</span> List {
+    <span class="comment">// `Nil` has type `List`</span>
     Nil
   }
   
-  // Consume a list, and return the same list with a new element at its front
-  fn prepend(self, elem: u32) -> List {
-    // `Cons` also has type List
-    Cons(elem, Box::new(self))
+  <span class="comment">// Consume a list, and return the same list with a new element at its front</span>
+  <span class="kw">fn</span> prepend(<span class="kw">self</span>, elem: <span class="kw">u32</span>) <span class="macro-nonterminal">-&gt;</span> List {
+    <span class="comment">// `Cons` also has type List</span>
+    Cons(elem, Box::<span class="kw">self</span>))
   }
   
-  // Return the length of the list
-  fn len(&self) -> u32 {
-  // `self` has to be matched, because the behavior of this method
-  // depends on the variant of `self`
-  // `self` has type `&List`, and `*self` has type `List`, matching on a
-  // concrete type `T` is preferred over a match on a reference `&T`
-  match *self {
-    // Can't take ownership of the tail, because `self` is borrowed;
-    // instead take a reference to the tail
-    Cons(_, ref tail) => 1 + tail.len(),
-    // Base Case: An empty list has zero length
-    Nil => 0
+  <span class="comment">// Return the length of the list</span>
+  <span class="kw">fn</span> len(<span class="kw-2">&</span><span class="kw">self</span>) <span class="macro-nonterminal">-&gt;</span> <span class="kw">u32</span> {
+  <span class="comment">// `self` has to be matched, because the behavior of this method</span>
+  <span class="comment">// depends on the variant of `self`</span>
+  <span class="comment">// `self` has type `&List`, and `*self` has type `List`, matching on a</span>
+  <span class="comment">// concrete type `T` is preferred over a match on a reference `&T`</span>
+  <span class="kw">match</span> <span class="kw-2">*</span><span class="kw">self</span> {
+    <span class="comment">// Can't take ownership of the tail, because `self` is borrowed;</span>
+    <span class="comment">// instead take a reference to the tail</span>
+    Cons(_, <span class="kw">ref</span> tail) <span class="macro-nonterminal">=&gt;</span> <span class="number">1</span> + tail.len(),
+    <span class="comment">// Base Case: An empty list has zero length</span>
+    Nil =&gt; <span class="number">0</span>
     }
   }
   
-  // Return representation of the list as a (heap allocated) string
-  fn stringify(&self) -> String {
-    match *self {
-      Cons(head, ref tail) => {
-        // `format!` is similar to `print!`, but returns a heap
-        // allocated string instead of printing to the console
-        format!("{}, {}", head, tail.stringify())
+  <span class="comment">// Return representation of the list as a (heap allocated) string</span>
+  <span class="kw">fn</span> stringify(<span class="kw-2">&</span><span class="kw">self</span>) <span class="macro-nonterminal">-&gt;</span> String {
+    <span class="kw">match</span> <span class="kw-2">*</span><span class="kw">self</span> {
+      Cons(head, <span class="kw">ref</span> tail) <span class="macro-nonterminal">=&gt;</span> {
+        <span class="comment">// `format!` is similar to `print!`, but returns a heap</span>
+        <span class="comment">// allocated string instead of printing to the console</span>
+        <span class="macro">format!</span>(<span class="string">"{}, {}"</span>, head, tail.stringify())
       },
-      Nil => {
-        format!("Nil")
+      Nil <span class="macro-nonterminal">=&gt;</span> {
+        <span class="macro">format!</span>(<span class="string">"Nil"</span>)
       },
     }
   }
 }
 
-fn main() {
-  // Create an empty linked list
-  let mut list = List::new();
+<span class="kw">fn</span> main() {
+  <span class="comment">// Create an empty linked list</span>
+  <span class="kw">let</span> <span class="kw">mut</span> list = List::new();
   
-  // Append some elements
-  list = list.prepend(1);
-  list = list.prepend(2);
-  list = list.prepend(3);
+  <span class="comment">// Append some elements</span>
+  list = list.prepend(<span class="number">1</span>);
+  list = list.prepend(<span class="number">2</span>);
+  list = list.prepend(<span class="number">3</span>);
   
-  // Show the final state of the list
-  println!("linked list has length: {}", list.len());
-  println!("{}", list.stringify());
+  <span class="comment">// Show the final state of the list</span>
+  <span class="macro">println!</span>(<span class="string">"linked list has length: {}"</span>, list.len());
+  <span class="macro">println!</span>(<span class="string">"{}"</span>, list.stringify());
 }
 </pre>
 		</div>
