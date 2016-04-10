@@ -40,15 +40,15 @@
 	<a href="object-ownership.html">
 		<h5>Object<br>Ownership</h5>
 	</a>
-	<a href="advance2.html">
-		<h5>Advance2</h5>
+	<a href="methods.html">
+		<h5>Methods</h5>
 	</a>
 	<a href="advance3.html">
 		<h5>Advance3</h5>
 	</a>
-    <a href="conclusion.html">
-        <h5>Conclusion</h5>
-    </a>
+	<a href="conclusion.html">
+		<h5>Conclusion</h5>
+	</a>
 </div>
 
 <div id="content">
@@ -56,98 +56,30 @@
 	<div id="contentDetails">
 		<div id="contentLeft">
 			<p><a href="https://doc.rust-lang.org/book/enums.html"><code>enums</code></a> allow custom data types.</p>
-			<p><a href="https://doc.rust-lang.org/book/structs.html"><code>structs</code></a> allow multiple members within one object.</p>
+			<p><a href="https://doc.rust-lang.org/book/structs.html"><code>structs</code></a> allow multiple members
+				within one object.</p>
 			<br>
-<pre class="rust rust-example-rendered" tabindex="0">
-<span class="kw">enum</span> MyType {
-  Data1,
-  Data2(Box&lt;<span class="kw">u32</span>&gt;),
-  NULL,
-}
-	
-<span class="kw">struct</span> MyObject {
-  myNum: i32,
-  myStr: &str,
-}
-
-<span class="kw">fn</span> main() {
-  <span class="kw">let</span> myStuff = MyObject { myNum: <span class="number">3</span>, myStr: <span class="string">"foo"</span> };
-  <span class="kw">let</span> myKind = MyType::Data1;
-}
-</pre>
+			<div class="rust rust-example-rendered" tabindex="0">
+				<span class="kw">enum</span> MyType {<br>
+				<span class="indent1">Data1,</span><br>
+				<span class="indent1">Data2(Box&lt;<span class="kw">u32</span>&gt;),<br>
+				<span class="indent1">NULL,<br>
+				}<br>
+				<br>
+				<span class="kw">struct</span> MyObject {<br>
+				<span class="indent1">myNum: i32,<br>
+				<span class="indent1">myStr: &str,<br>
+				}<br>
+				<br>
+				<span class="kw">fn</span> main() {<br>
+				<span class="indent1 kw">let</span> myStuff = MyObject { myNum: <span class="number">3</span>, myStr: <span class="string">"foo"</span> };<br>
+				<span class="indent1 kw">let</span> myKind = MyType::Data1;<br>
+				}
+			</div>
 		</div>
 		<div id="contentDivide"></div>
 		<div id="contentRight">
-			<p tabindex="1"><a href="http://rustbyexample.com/custom_types/enum/testcase_linked_list.html">Linked List</a> -
-				functional style</p>
-			<br>
-<pre class="rust rust-example-rendered small" tabindex="1"><span class="kw">use</span> List::<span class="kw-2">*</span>;
-
-<span class="kw">enum</span> List {
-  <span class="comment">// Cons: Tuple struct that wraps an element and a pointer to the next node</span>
-  Cons(<span class="kw">u32</span>, Box&lt;List&gt;),
-  <span class="comment">// Nil: A node that signifies the end of the linked list</span>
-  Nil,
-}
-
-<span class="comment">// Methods can be attached to an enum</span>
-<span class="kw">impl</span> List {
-  <span class="comment">// Create an empty list</span>
-  <span class="kw">fn</span> <span class="macro">new</span>() <span class="macro-nonterminal">-&gt;</span> List {
-    <span class="comment">// `Nil` has type `List`</span>
-    Nil
-  }
-  
-  <span class="comment">// Consume a list, and return the same list with a new element at its front</span>
-  <span class="kw">fn</span> prepend(<span class="kw">self</span>, elem: <span class="kw">u32</span>) <span class="macro-nonterminal">-&gt;</span> List {
-    <span class="comment">// `Cons` also has type List</span>
-    Cons(elem, Box::<span class="kw">self</span>))
-  }
-  
-  <span class="comment">// Return the length of the list</span>
-  <span class="kw">fn</span> len(<span class="kw-2">&</span><span class="kw">self</span>) <span class="macro-nonterminal">-&gt;</span> <span class="kw">u32</span> {
-  <span class="comment">// `self` has to be matched, because the behavior of this method</span>
-  <span class="comment">// depends on the variant of `self`</span>
-  <span class="comment">// `self` has type `&List`, and `*self` has type `List`, matching on a</span>
-  <span class="comment">// concrete type `T` is preferred over a match on a reference `&T`</span>
-  <span class="kw">match</span> <span class="kw-2">*</span><span class="kw">self</span> {
-    <span class="comment">// Can't take ownership of the tail, because `self` is borrowed;</span>
-    <span class="comment">// instead take a reference to the tail</span>
-    Cons(_, <span class="kw">ref</span> tail) <span class="macro-nonterminal">=&gt;</span> <span class="number">1</span> + tail.len(),
-    <span class="comment">// Base Case: An empty list has zero length</span>
-    Nil =&gt; <span class="number">0</span>
-    }
-  }
-  
-  <span class="comment">// Return representation of the list as a (heap allocated) string</span>
-  <span class="kw">fn</span> stringify(<span class="kw-2">&</span><span class="kw">self</span>) <span class="macro-nonterminal">-&gt;</span> String {
-    <span class="kw">match</span> <span class="kw-2">*</span><span class="kw">self</span> {
-      Cons(head, <span class="kw">ref</span> tail) <span class="macro-nonterminal">=&gt;</span> {
-        <span class="comment">// `format!` is similar to `print!`, but returns a heap</span>
-        <span class="comment">// allocated string instead of printing to the console</span>
-        <span class="macro">format!</span>(<span class="string">"{}, {}"</span>, head, tail.stringify())
-      },
-      Nil <span class="macro-nonterminal">=&gt;</span> {
-        <span class="macro">format!</span>(<span class="string">"Nil"</span>)
-      },
-    }
-  }
-}
-
-<span class="kw">fn</span> main() {
-  <span class="comment">// Create an empty linked list</span>
-  <span class="kw">let</span> <span class="kw">mut</span> list = List::new();
-  
-  <span class="comment">// Append some elements</span>
-  list = list.prepend(<span class="number">1</span>);
-  list = list.prepend(<span class="number">2</span>);
-  list = list.prepend(<span class="number">3</span>);
-  
-  <span class="comment">// Show the final state of the list</span>
-  <span class="macro">println!</span>(<span class="string">"linked list has length: {}"</span>, list.len());
-  <span class="macro">println!</span>(<span class="string">"{}"</span>, list.stringify());
-}
-</pre>
+			
 		</div>
 	</div>
 </div>

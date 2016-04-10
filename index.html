@@ -40,8 +40,8 @@
 	<a href="object-ownership.html">
 		<h5>Object<br>Ownership</h5>
 	</a>
-	<a href="advance2.html">
-		<h5>Advance2</h5>
+	<a href="methods.html">
+		<h5>Methods</h5>
 	</a>
 	<a href="advance3.html">
 		<h5>Advance3</h5>
@@ -59,7 +59,7 @@
 			<ul>
 				<li tabindex="0">Rust is a systems programming language (like C)</li>
 				<li tabindex="1">Three main goals: safety, speed, and concurrency</li>
-				<li tabindex="2">Has a number of compile-time safety checks that don't produce runtime overhead</li>
+				<li tabindex="2">Has many compile-time safety checks that don't produce runtime overhead</li>
 				<li tabindex="3">Rust has three versions: stable, beta, and nightly</li>
 				<li tabindex="4">Rust uses Cargo as a package manager (think "make")</li>
 			</ul>
@@ -69,27 +69,27 @@
 		<div id="contentRight">
 			<p tabindex="5">Now let's look at some Rust code</p>
 			<br>
-<pre class="rust rust-example-rendered" tabindex="5">
-<span class="kw">fn</span> main() {
-    <span class="comment">// Mutability</span>
-    <span class="kw">let</span> x = <span class="number">1</span>;
-    x = <span class="number">2</span>; <span class="comment">// error</span>
-    
-    <span class="kw">let</span> <span class="kw">mut</span> y = <span class="number">5</span>;
-    y = <span class="number">10</span>; <span class="comment">// There we go!</span>
-    
-    <span class="kw">let</span> a = <span class="boolval">true</span>;            <span class="comment">// boolean</span>
-    <span class="kw">let</span> b = <span class="string">'b'</span>;             <span class="comment">// char, four bytes - Unicode</span>
-    <span class="kw">let</span> c = <span class="number">123</span>;             <span class="comment">// integer</span>
-    <span class="kw">let</span> d = <span class="number">1.23</span>;            <span class="comment">// floating point</span>
-    <span class="kw">let</span> e = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];       <span class="comment">// array (fixed size)</span>
-    <span class="kw">let</span> f = <span class="string">"Hello, World!"</span>; <span class="comment">// string</span>
-    <span class="kw">let</span> g = (<span class="number">1</span>, <span class="string">"Hello"</span>);    <span class="comment">// tuple</span>
-    
-    <span class="kw">fn</span> foo(x: <span class="kw">i32</span>) <span class="macro-nonterminal">-&gt;</span> <span class="kw">i32</span> { x } <span class="comment">// function</span>
-    <span class="kw">let</span> x = foo;                <span class="comment">// function pointer</span>
-}
-</pre>
+			<div class="rust rust-example-rendered" tabindex="5">
+				<span class="kw">fn</span> <span class="ident">main() {</span><br>
+				<span class="indent1 comment">// Mutability</span><br>
+				<span class="indent1 kw">let</span> <span class="ident">x</span> <span class="op">=</span> <span class="number">1</span>;<br>
+				<span class="indent1">x <span class="op">=</span> <span class="number">2</span>; <span class="comment">// error</span></span><br>
+				
+				<span class="indent1 kw">let</span> <span class="kw">mut</span> y <span class="op">=</span> <span class="number">5</span>;<br>
+				<span class="indent1">y <span class="op">=</span> <span class="number">10</span>; <span class="comment">// There we go!</span></span><br>
+				<br>
+				<span class="indent1 kw">let</span> a <span class="op">=</span> <span class="boolval">true</span>; <span class="comment">// boolean</span><br>
+				<span class="indent1 kw">let</span> b <span class="op">=</span> <span class="string">'b'</span>; <span class="comment">// char, four bytes - Unicode</span><br>
+				<span class="indent1 kw">let</span> c <span class="op">=</span> <span class="number">123</span>; <span class="comment">// integer</span><br>
+				<span class="indent1 kw">let</span> d <span class="op">=</span> <span class="number">1.23</span>; <span class="comment">// floating point</span><br>
+				<span class="indent1 kw">let</span> e <span class="op">=</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]; <span class="comment">// array (fixed size)</span><br>
+				<span class="indent1 kw">let</span> f <span class="op">=</span> <span class="string">"Hello, World!"</span>; <span class="comment">// string</span><br>
+				<span class="indent1 kw">let</span> g <span class="op">=</span> (<span class="number">1</span>, <span class="string">"Hello"</span>); <span class="comment">// tuple</span><br>
+				<br>
+				<span class="indent1 kw">fn</span> foo(x: <span class="kw">i32</span>) <span class="macro-nonterminal">-&gt;</span> <span class="kw">i32</span> { x } <span class="comment">// function</span><br>
+				<span class="indent1 kw">let</span> x <span class="op">=</span> foo; <span class="comment">// function pointer</span><br>
+				}
+			</div>
 		</div>
 	</div>
 </div>
