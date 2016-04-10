@@ -136,6 +136,10 @@ header hr {
     font-size: 12px;
 }
 
+div.rust {
+    padding: 1em;
+    background-color: #f6f6f6;
+}
 /* Code highlighting */
 pre.rust .kw { color: #8959A8; }
 pre.rust .kw-2, pre.rust .prelude-ty { color: #4271AE; }
@@ -147,6 +151,22 @@ pre.rust .doccomment { color: #4D4D4C; }
 pre.rust .macro, pre.rust .macro-nonterminal { color: #3E999F; }
 pre.rust .lifetime { color: #B76514; }
 pre.rust .error { color: #920203; }
-pre.rust .success { color: #1d6a02
-}
+pre.rust .success { color: #1d6a02; }
+
+div.rust .kw { color: #8959A8; }
+div.rust .kw-2, div.rust .prelude-ty { color: #4271AE; }
+div.rust .number, div.rust .string { color: #718C00; }
+div.rust .self, div.rust .boolval, div.rust .prelude-val,
+div.rust .attribute, div.rust .attribute .ident { color: #C82829; }
+div.rust .comment { color: #8E908C; }
+div.rust .doccomment { color: #4D4D4C; }
+div.rust .macro, div.rust .macro-nonterminal { color: #3E999F; }
+div.rust .lifetime { color: #B76514; }
+div.rust .error { color: #920203; }
+div.rust .success { color: #1d6a02;  }
+
+.indent1 { padding-left: 4em; }
+.indent2 { padding-left: 8em; }
+.indent3 { padding-left: 12em; }
+.indent4 { padding-left: 16em; }
 
