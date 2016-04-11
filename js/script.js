@@ -53,7 +53,7 @@ $(function(){
     $(document).unbind('keypress');
     $(document).keydown(function(e){
         var appearGroup = "[tabindex='" + currentTabIndex + "']";
-        var addGroup = ".displayStyle_none " + appearGroup;
+        var addGroup = ".displayStyle_none" + appearGroup;
         var disappearGroup = ".hideOn_" + currentTabIndex;
         var removeGroup = disappearGroup + ".displayStyle_none ";
         var right = 39;
