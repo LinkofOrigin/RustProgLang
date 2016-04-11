@@ -1,0 +1,20 @@
+// Author: Jesse Rupe
+
+struct Room {
+    carpet: bool,
+}
+
+trait HasCarpet {
+    fn carpet(&self) -> bool;
+}
+
+impl HasCarpet for Room {
+    fn carpet(&self) -> bool {
+        self.carpet // last line is return value (no ';')
+    }
+}
+
+fn main() {
+    let my_room = Room { carpet: false };
+    println!("my_room's carpet situation: {}", my_room.carpet);
+}

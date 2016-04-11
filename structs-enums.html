@@ -62,24 +62,47 @@
 			<div class="rust rust-example-rendered" tabindex="0">
 				<span class="kw">enum</span> MyType {<br>
 				<span class="indent1">Data1,</span><br>
-				<span class="indent1">Data2(Box&lt;<span class="kw">u32</span>&gt;),<br>
-				<span class="indent1">NULL,<br>
+				<span class="indent1">Data2(Box&lt;<span class="kw">u32</span>&gt;),</span><br>
+				<span class="indent1">NULL,</span><br>
 				}<br>
 				<br>
 				<span class="kw">struct</span> MyObject {<br>
-				<span class="indent1">myNum: i32,<br>
-				<span class="indent1">myStr: &str,<br>
+				<span class="indent1">myNum: i32,</span><br>
+				<span class="indent1">myStr: &str,</span><br>
 				}<br>
 				<br>
 				<span class="kw">fn</span> main() {<br>
-				<span class="indent1 kw">let</span> myStuff = MyObject { myNum: <span class="number">3</span>, myStr: <span class="string">"foo"</span> };<br>
-				<span class="indent1 kw">let</span> myKind = MyType::Data1;<br>
+				<span class="indent1 kw">let</span> my_kind = MyType::Data1;<br>
+				<span class="indent1 kw">let</span> my_stuff = MyObject { myNum: <span class="number">3</span>, myStr: <span class="string">"foo"</span> };<br>
+				<br>
+				<span class="indent1 macro">println!</span>(<span class="string">"my_stuff has - {}, {}"</span>,<br>
+				<span class="indent2">&nbsp;&nbsp;&nbsp;&nbsp;my_stuff.my_num, my_stuff.my_str);</span><br>
+				<span class="indent1 macro">println!</span>(<span class="string">"my_kind has - {:?}"</span>, my_kind);<br>
 				}
 			</div>
 		</div>
 		<div id="contentDivide"></div>
 		<div id="contentRight">
-			
+			<p tabindex="1"><code>struct</code> fields are not mutable.</p>
+			<p tabindex="1"><code>struct</code> mutability is determined at binding</p>
+			<div class="rust rust-example-rendered" tabindex="1">
+				<span class="comment">// Nope! Try again.</span><br>
+				<span class="comment">// struct BadStruct {</span><br>
+				<span class="comment">// &nbsp;&nbsp;&nbsp; mut a: i32,</span><br>
+				<span class="comment">// &nbsp;&nbsp;&nbsp; b: i32,</span><br>
+				<span class="comment">// }</span><br>
+				<br>
+				<span class="kw">struct</span> GoodStruct {<br>
+				<span class="indent1">a: <span class="kw">i32</span>,<br>
+				<span class="indent1">b: <span class="kw">i32</span>,</span><br>
+				}<br>
+				<br>
+				<span class="kw">fn</span> main() {<br>
+				<span class="indent1 comment">// Much better!</span><br>
+				<span class="indent1 kw">let</span> <span class="kw-2">mut</span> my_struct = GoodStruct { a: <span class="number">5</span>, b: <span class="number">10</span> };<br>
+				<span class="indent1">my_struct.a</span> = <span class="number">5000</span>;<br>
+				}
+			</div>
 		</div>
 	</div>
 </div>

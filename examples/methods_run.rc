@@ -1,0 +1,58 @@
+// Author: Jesse Rupe
+
+#![allow(unused_variables)]
+struct Circle {
+    radius: f64
+}
+
+struct Triangle {
+    base: f64,
+    height: f64,
+}
+
+struct Rectangle {
+    width: f64,
+    height: f64,
+}
+
+trait Area {
+    fn area(&self) -> f64;
+}
+
+impl Area for Circle {
+    fn area(&self) -> f64 {
+        std::f64::consts::PI * (self.radius * self.radius)
+    }
+}
+
+impl Area for Triangle {
+    fn area(&self) -> f64 {
+        0.5 * self.base * self.height
+    }
+}
+
+impl Area for Rectangle {
+    fn area(&self) -> f64 {
+        self.width * self.height
+    }
+}
+
+impl Drop for Circle {
+    fn drop(&mut self) {
+        println!("dropped circle: {}", self.area());
+    }
+}
+
+fn main() {
+    let circle = Circle { radius: 5.0 };
+    let triangle = Triangle { base: 10.0, height: 3.0 };
+    let rectangle = Rectangle { width: 2.0, height: 3.0 };
+    
+    println!("circle area: {}", circle.area()); // ~78.5?
+    println!("triangle area: {}", triangle.area()); // 15?
+    println!("rectangle area: {}", rectangle.area()); // 6?
+    
+    {
+        let new_circle = Circle { radius: 7.0 };
+    } // leaving scope
+} // leaving scope 

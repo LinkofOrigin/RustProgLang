@@ -1,0 +1,22 @@
+// Author: Jesse Rupe
+
+#[derive(Debug)]
+#[allow(dead_code)]
+enum MyType {
+    Data1,
+    Data2(u32),
+    NULL,
+}
+
+struct MyObject {
+    my_num: i32,
+    my_str: &'static str,
+}
+
+fn main() {
+    let my_kind = MyType::Data1;
+    let my_stuff = MyObject { my_num: 3, my_str: "foo" };
+    
+    println!("my_stuff has - {}, {}", my_stuff.my_num, my_stuff.my_str);
+    println!("my_kind has - {:?}", my_kind);
+}

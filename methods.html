@@ -54,19 +54,39 @@
 	<h2>Methods</h2>
 	<div id="contentDetails">
 		<div id="contentLeft">
-			<p>Part 1</p>
+			<p tabindex="0"><code>traits</code> are abstract method declarations</p>
+			<p tabindex="1"><code>impl</code> defines the method for a struct/enum</p>
+			<p tabindex="2"><code>Drop</code> is a special trait for when items exit scope</p>
 			<br>
-			<div>
-			
+			<div class="rust rust-example-rendered" tabindex="3">
+				<span class="kw">struct</span> Room {<br>
+				<span class="indent1">carpet: bool,</span><br>
+				}<br>
+				<br>
+				<span class="kw">trait</span> HasCarpet {<br>
+				<span class="indent1 kw">fn</span> carpet(<span class="kw-2">&</span><span class="attribute">self</span>) <span class="op">-&gt;</span> bool;<br>
+				}<br>
+				<br>
+				<span class="kw">impl</span> HasCarpet <span class="kw">for</span> Room {<br>
+				<span class="indent1 kw">fn</span> carpet(<span class="kw-2">&</span><span class="attribute">self</span>) <span class="op">-&gt;</span> bool {<br>
+				<span class="indent2">self.carpet</span><span class="comment">&nbsp;// last line is return value (no ';')</span><br>
+				<span class="indent1">}</span><br>
+				}<br>
+				<br>
+				<span class="kw">fn</span> main() {<br>
+				<span class="indent1 kw">let</span> my_room = Room { carpet: <span class="boolval">false</span> };<br>
+				<span class="indent1 macro">println!</span>(<span class="string">"my_room's carpet situation: {}"</span>,<br>
+				<span class="indent2">&nbsp;&nbsp;&nbsp;my_room.carpet);</span><br>
+				}
 			</div>
 		</div>
 		
 		<div id="contentDivide"></div>
 		<div id="contentRight">
-			<p><a href="http://rustbyexample.com/custom_types/enum/testcase_linked_list.html">Linked List</a> -
+			<p tabindex="4"><a href="http://rustbyexample.com/custom_types/enum/testcase_linked_list.html">Linked List</a> -
 				functional style</p>
 			<br>
-			<div class="rust rust-example-rendered small">
+			<div class="rust rust-example-rendered small" tabindex="4">
 				<span class="kw">use</span> List::<span class="kw-2">*</span>;<br>
 				<br>
 				<span class="kw">enum</span> List {<br>

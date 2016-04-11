@@ -1,6 +1,10 @@
+// Author: Jesse Rupe
+
+#![allow(unused_variables)]
+#![allow(unused_assignments)]
 fn main() {
 	let x = 1;
-	x = 2; // error
+	// x = 2; // error
 	
 	let mut y = 5;
 	y = 10; // There we go!

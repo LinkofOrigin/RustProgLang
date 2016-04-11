@@ -1,0 +1,20 @@
+// Author: Jesse Rupe
+
+#[derive(Debug)]
+#[allow(dead_code)]
+// Nope! Try again.
+// struct BadStruct {
+//     mut a: i32,
+//     b: i32,
+// }
+
+struct GoodStruct {
+    a: i32,
+    b: i32,
+}
+
+fn main() {
+    // Much better!
+    let mut my_struct = GoodStruct { a: 5, b: 10 };
+    my_struct.a = 5000;
+}
