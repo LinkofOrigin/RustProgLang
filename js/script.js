@@ -53,9 +53,9 @@ $(function(){
     $(document).unbind('keypress');
     $(document).keydown(function(e){
         var appearGroup = "[tabindex='" + currentTabIndex + "']";
-        var addGroup = ".displayStyle_none" + appearGroup;
+        var addGroup = ".displayStyle_none " + appearGroup;
         var disappearGroup = ".hideOn_" + currentTabIndex;
-        var removeGroup = ".displayStyle_none " + disappearGroup;
+        var removeGroup = disappearGroup + ".displayStyle_none ";
         var right = 39;
         var left = 37;
         var urlComponents = window.location.pathname.split('/');
@@ -75,6 +75,7 @@ $(function(){
                 $(addGroup).show();
                 $(disappearGroup).css("visibility", "hidden");
                 $(removeGroup).hide();
+                debugger;
                 currentTabIndex++;
             } else {
                 window.location.href = home + viewLookup[current]["next"];
