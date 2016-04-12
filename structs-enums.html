@@ -1,0 +1,110 @@
+<html>
+<head>
+	<title>Rust Programming Language</title>
+	<link href="imgs/favicon.ico" type="image/png" rel="shortcut icon">
+	
+	<link href="css/style.css" rel="stylesheet">
+	
+	<script src="js/jquery-2.2.2.js"></script>
+	<script src="js/script.js"></script>
+</head>
+<body>
+
+<header>
+	<a href="index.html"><img width="70" id="headerImg" src="imgs/favicon.ico"></a>
+	<h1>Rust Programming Language</h1>
+	<h2>Jesse Rupe ~ Will Ross ~ Jake Blow</h2>
+	<hr>
+</header>
+
+<div id="sidebar">
+	<a href="index.html" style="display: none">
+		<h3>Index</h3>
+	</a>
+	<a href="history.html">
+		<h3>History</h3>
+	</a>
+	<hr>
+	<a href="features.html">
+		<h3>Features</h3>
+	</a>
+	<a href="pattern-matching.html">
+		<h5>Pattern<br>Matching</h5>
+	</a>
+	<a href="structs-enums.html">
+		<h5 id="selected">Structs<br>&amp; Enums</h5>
+	</a>
+	<a href="bind-and-scope.html">
+		<h5>Bindings<br>&amp; Scope</h5>
+	</a>
+	<a href="object-ownership.html">
+		<h5>Object<br>Ownership</h5>
+	</a>
+	<a href="methods.html">
+		<h5>Methods</h5>
+	</a>
+	<a href="concurrency.html">
+		<h5>Concurrency</h5>
+	</a>
+	<a href="conclusion.html">
+		<h5>Conclusion</h5>
+	</a>
+</div>
+
+<div id="content">
+	<h2>Structs and Enums</h2>
+	<div id="contentDetails">
+		<div id="contentLeft">
+			<p><a href="https://doc.rust-lang.org/book/enums.html"><code>enums</code></a> allow custom data types.</p>
+			<p><a href="https://doc.rust-lang.org/book/structs.html"><code>structs</code></a> allow multiple members
+				within one object.</p>
+			<br>
+			<div class="rust rust-example-rendered" tabindex="0">
+				<span class="kw">enum</span> MyType {<br>
+				<span class="indent1">Data1,</span><br>
+				<span class="indent1">Data2(Box&lt;<span class="kw">u32</span>&gt;),</span><br>
+				<span class="indent1">NULL,</span><br>
+				}<br>
+				<br>
+				<span class="kw">struct</span> MyObject {<br>
+				<span class="indent1">myNum: i32,</span><br>
+				<span class="indent1">myStr: &str,</span><br>
+				}<br>
+				<br>
+				<span class="kw">fn</span> main() {<br>
+				<span class="indent1 kw">let</span> my_kind = MyType::Data1;<br>
+				<span class="indent1 kw">let</span> my_stuff = MyObject { myNum: <span class="number">3</span>, myStr: <span class="string">"foo"</span> };<br>
+				<br>
+				<span class="indent1 macro">println!</span>(<span class="string">"my_stuff has - {}, {}"</span>,<br>
+				<span class="indent2">&nbsp;&nbsp;&nbsp;&nbsp;my_stuff.my_num, my_stuff.my_str);</span><br>
+				<span class="indent1 macro">println!</span>(<span class="string">"my_kind has - {:?}"</span>, my_kind);<br>
+				}
+			</div>
+		</div>
+		<div id="contentDivide"></div>
+		<div id="contentRight">
+			<p tabindex="1"><code>struct</code> fields are not mutable.</p>
+			<p tabindex="1"><code>struct</code> mutability is determined at binding</p>
+			<div class="rust rust-example-rendered" tabindex="1">
+				<span class="comment">// Nope! Try again.</span><br>
+				<span class="comment">// struct BadStruct {</span><br>
+				<span class="comment">// &nbsp;&nbsp;&nbsp; mut a: i32,</span><br>
+				<span class="comment">// &nbsp;&nbsp;&nbsp; b: i32,</span><br>
+				<span class="comment">// }</span><br>
+				<br>
+				<span class="kw">struct</span> GoodStruct {<br>
+				<span class="indent1">a: <span class="kw">i32</span>,<br>
+				<span class="indent1">b: <span class="kw">i32</span>,</span><br>
+				}<br>
+				<br>
+				<span class="kw">fn</span> main() {<br>
+				<span class="indent1 comment">// Much better!</span><br>
+				<span class="indent1 kw">let</span> <span class="kw-2">mut</span> my_struct = GoodStruct { a: <span class="number">5</span>, b: <span class="number">10</span> };<br>
+				<span class="indent1">my_struct.a</span> = <span class="number">5000</span>;<br>
+				}
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
