@@ -51,10 +51,24 @@
     </a>
 </div>
 <div id="content">
-    <h2>Intro to Rust</h2>
+    <h2>Concurrency</h2>
     <div id="contentDetails">
         <div id="contentLeft">
-            <p>Part 1</p>
+            <p tabindex="0">Multithreading</p>
+            <p tabindex="1">Mutexes own the data</p>
+            <div class="rust rust-example-rendered small" tabindex="2">
+				<span>fn use_lock(mutex: &Mutex<Vec<i32>>) { </span><br>
+				<span class="indent1">let vec = {</span><br>
+				<span>// acquire the lock</span><br>
+				<span class="indent2">let mut guard = lock(mutex);</span><br>
+				<span>// attempt to return a borrow of the data</span><br>
+				<span class="indent2"> access(&mut guard) </span><br>
+				<span>// guard is destroyed here, releasing the lock</span><br>
+				<span class="indent1">};</span><br>
+				<span>// attempt to access the data outside of the lock.</span><br>
+				<span class="indent1">vec.push(3);</span><br>
+				<span>}</span><br>
+			</div>
             <br>
 <div>
     
@@ -63,7 +77,7 @@
         
         <div id="contentDivide"></div>
         <div id="contentRight">
-            <p>Part 2</p>
+            <p tabindex="3">Child Processes</p>
             <br>
 <div>
 	
