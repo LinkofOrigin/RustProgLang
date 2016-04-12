@@ -65,7 +65,7 @@ $(function(){
         if(arr) {
             home = window.location.href.substring(0,arr["index"]+1);
         }
-        var current = urlComponents[2] + (urlComponents.length == 4 ? "/" + urlComponents[3] : "");
+        var current = urlComponents[urlComponents.length-1];
 	    if(current === "") {
 		    current = "index.html";
 	    }
