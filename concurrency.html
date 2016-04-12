@@ -54,7 +54,33 @@
     <h2>Concurrency</h2>
     <div id="contentDetails">
         <div id="contentLeft">
-            <p tabindex="0">Multithreading</p>
+            <p>Multithreading</p>
+			<div class="rust rust-example-rendered small" tabindex="0">
+			<span>use std::thread;</span><br>
+			<span>static NTHREADS: i32 = 10;</span><br><br>
+			<span>//Here's our main thread</span><br>
+			<span>fn main(){ </span><br>
+			<span>//Make a vector for child threads</span><br>
+			<span class="indent1">let mut children = vec![];</span><br>
+			<span class="indent1">for i in 0..NTHREADS {</span><br>
+			<span>// Thread creation</span><br>
+			<span class="indent2"> children.push(thread::spawn(move || {
+			<span class="indent3">println!("Wee! I'm thread # {}", i)</span><br>
+			<span class="indent2">}));</span><br>
+			<span>// Simple thread join loop.</span><br>
+			<span class="indent1">for thread in children {</span><br>
+			<span class="indent2">let _ = child.join();</span><br>
+			<span class="indent1">}</span><br>
+			<span>}</span><br>
+			</div>
+        <br>	
+<div>
+    
+</div>
+        </div>
+        
+        <div id="contentDivide"></div>
+        <div id="contentRight">
             <p tabindex="1">Mutexes own the data</p>
             <div class="rust rust-example-rendered small" tabindex="2">
 				<span>fn use_lock(mutex: &Mutex<Vec<i32>>) { </span><br>
@@ -69,19 +95,6 @@
 				<span class="indent1">vec.push(3);</span><br>
 				<span>}</span><br>
 			</div>
-            <br>
-<div>
-    
-</div>
-        </div>
-        
-        <div id="contentDivide"></div>
-        <div id="contentRight">
-            <p tabindex="3">Child Processes</p>
-            <br>
-<div>
-	
-</div>
         </div>
     </div>
 </div>
