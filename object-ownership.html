@@ -2,9 +2,9 @@
 <head>
     <title>Rust Programming Language</title>
     <link href="imgs/favicon.ico" type="image/png" rel="shortcut icon">
-    
+
     <link href="css/style.css" rel="stylesheet">
-    
+
     <script src="js/jquery-2.2.2.js"></script>
     <script src="js/script.js"></script>
 </head>
@@ -35,7 +35,7 @@
         <h5>Structs<br>&amp; Enums</h5>
     </a>
     <a href="bind-and-scope.html">
-        <h5>Bindings<br>&amp; Scope</h5>
+        <h5>Binding and Scope</h5>
     </a>
     <a href="object-ownership.html">
         <h5 id="selected">Object<br>Ownership</h5>
@@ -43,31 +43,118 @@
     <a href="methods.html">
         <h5>Methods</h5>
     </a>
-    <a href="concurrency.html">
-        <h5>Concurrency</h5>
+    <a href="advance3.html">
+        <h5>Advance3</h5>
     </a>
     <a href="conclusion.html">
         <h5>Conclusion</h5>
     </a>
 </div>
 <div id="content">
-    <h2>Intro to Rust</h2>
+    <h2>Object Ownership</h2>
     <div id="contentDetails">
         <div id="contentLeft">
-            <p>Part 1</p>
+            <p tabindex="0">One of the most unique and compelling reasons to learn Rust</p>
+            <p tabindex="1">Plays a huge role in Rust's memory safety goals</p>
+            <p tabindex="2">One of the highest learning curves among Rust's features</p>
             <br>
-<div>
-    
-</div>
+            <div class="rust rust-example-rendered" tabindex="3">
+                <span class="kw">struct</span> Room {<br>
+                <span class="indent1">carpet: bool,</span><br>
+                }<br>
+                <br>
+                <span class="kw">trait</span> HasCarpet {<br>
+                <span class="indent1 kw">fn</span> carpet(<span class="kw-2">&</span><span class="attribute">self</span>) <span class="op">-&gt;</span> bool;<br>
+                }<br>
+                <br>
+                <span class="kw">impl</span> HasCarpet <span class="kw">for</span> Room {<br>
+                <span class="indent1 kw">fn</span> carpet(<span class="kw-2">&</span><span class="attribute">self</span>) <span class="op">-&gt;</span> bool {<br>
+                <span class="indent2">self.carpet</span><span class="comment">&nbsp;// last line is return value (no ';')</span><br>
+                <span class="indent1">}</span><br>
+                }<br>
+                <br>
+                <span class="kw">fn</span> main() {<br>
+                <span class="indent1 kw">let</span> my_room = Room { carpet: <span class="boolval">false</span> };<br>
+                <span class="indent1 macro">println!</span>(<span class="string">"my_room's carpet situation: {}"</span>,<br>
+                <span class="indent2">&nbsp;&nbsp;&nbsp;my_room.carpet);</span><br>
+                }
+            </div>
         </div>
-        
+
         <div id="contentDivide"></div>
         <div id="contentRight">
-            <p>Part 2</p>
+            <p tabindex="4"><a href="http://rustbyexample.com/custom_types/enum/testcase_linked_list.html">Linked List</a> -
+                functional style</p>
             <br>
-<div>
-	
-</div>
+            <div class="rust rust-example-rendered small" tabindex="4">
+                <span class="kw">use</span> List::<span class="kw-2">*</span>;<br>
+                <br>
+                <span class="kw">enum</span> List {<br>
+                <span class="indent1 comment">// Cons: Tuple struct that wraps an element and a pointer to the next node</span><br>
+                <span class="indent1">Cons(<span class="kw">u32</span>, Box&lt;List&gt;),</span><br>
+                <span class="indent1 comment">// Nil: A node that signifies the end of the linked list</span><br>
+                <span class="indent1">Nil,</span><br>
+                }<br>
+                <br>
+                <span class="comment">// Methods can be attached to an enum</span><br>
+                <span class="kw">impl</span> List {<br>
+                <span class="indent1 comment">// Create an empty list</span><br>
+                <span class="indent1 kw">fn</span> <span class="macro">new</span>() <span class="op">-&gt;</span> List {<br>
+                <span class="indent2 comment">// `Nil` has type `List`</span><br>
+                <span class="indent2">Nil</span><br>
+                <span class="indent1">}</span><br>
+                <br>
+                <span class="indent1 comment">// Consume a list, and return the same list with a new element at its front</span><br>
+                <span class="indent1 kw">fn</span> prepend(<span class="kw">self</span>, elem: <span class="kw">u32</span>) <span class="op">-&gt;</span> List {<br>
+                <span class="indent2 comment">// `Cons` also has type List</span><br>
+                <span class="indent2">Cons(elem, Box::<span class="kw">self</span>))</span><br>
+                <span class="indent1">}</span><br>
+                <br>
+                <span class="indent1 comment">// Return the length of the list</span><br>
+                <span class="indent1 kw">fn</span> len(<span class="kw-2">&</span><span class="kw">self</span>) <span class="op">-&gt;</span> <span class="kw">u32</span> {<br>
+                <span class="indent2 comment">// `self` has to be matched, because the behavior of this method</span><br>
+                <span class="indent2 comment">// depends on the variant of `self`</span><br>
+                <span class="indent2 comment">// `self` has type `&List`, and `*self` has type `List`, matching on a</span><br>
+                <span class="indent2 comment">// concrete type `T` is preferred over a match on a reference `&T`</span><br>
+                <span class="indent2 kw">match</span> <span class="kw-2">*</span><span class="kw">self</span> {<br>
+                <span class="indent3 comment">// Can't take ownership of the tail, because `self` is borrowed;</span><br>
+                <span class="indent3 comment">// instead take a reference to the tail</span><br>
+                <span class="indent3">Cons(_, <span class="kw">ref</span> tail) <span class="op">=&gt;</span> <span class="number">1</span> + tail.len(),</span><br>
+                <span class="indent3 comment">// Base Case: An empty list has zero length</span><br>
+                <span class="indent3">Nil =&gt; <span class="number">0</span></span><br>
+                <span class="indent2">}</span><br>
+                <span class="indent1">}</span><br>
+                <br>
+                <span class="indent1 comment">// Return representation of the list as a (heap allocated) string</span><br>
+                <span class="indent1 kw">fn</span> stringify(<span class="kw-2">&</span><span class="kw">self</span>) <span class="op">-&gt;</span> String {<br>
+                <span class="indent2 kw">match</span> <span class="kw-2">*</span><span class="kw">self</span> {<br>
+                <span class="indent3">Cons(head, <span class="kw">ref</span> tail) <span class="op">=&gt;</span> {</span><br>
+                <span class="indent4 comment">// `format!` is similar to `print!`, but returns a heap</span><br>
+                <span class="indent4 comment">// allocated string instead of printing to the console</span><br>
+                <span class="indent4 macro">format!</span>(<span class="string">"{}, {}"</span>, head, tail.stringify())<br>
+                <span class="indent3">},</span><br>
+                <span class="indent3">Nil <span class="op">=&gt;</span> {</span><br>
+                <span class="indent4 macro">format!</span>(<span class="string">"Nil"</span>)<br>
+                <span class="indent3">},</span><br>
+                <span class="indent2">}</span><br>
+                <span class="indent1">}</span><br>
+                }<br>
+                <br>
+                <span class="kw">fn</span> main() {<br>
+                <span class="indent1 comment">// Create an empty linked list</span><br>
+                <span class="indent1 kw">let</span> <span class="kw">mut</span> list = List::new();<br>
+                <br>
+                <span class="indent1 comment">// Append some elements</span><br>
+                <span class="indent1">list = list.prepend(<span class="number">1</span>);</span><br>
+                <span class="indent1">list = list.prepend(<span class="number">2</span>);</span><br>
+                <span class="indent1">list = list.prepend(<span class="number">3</span>);</span><br>
+                <br>
+                <span class="indent1 comment">// Show the final state of the list</span><br>
+                <span class="indent1 macro">println!</span>(<span class="string">"linked list has length: {}"</span>,<br>
+                <span class="indent1">list.len());</span><br>
+                <span class="indent1 macro">println!</span>(<span class="string">"{}"</span>, list.stringify());<br>
+                }
+            </div>
         </div>
     </div>
 </div>
