@@ -1,0 +1,52 @@
+n() {
+
+    struct Book {
+        name: &'static str,
+    }
+
+    struct Person {
+        book1: Book,
+        book2: Book,
+        book3: Book,
+    }
+
+    struct PersonRef<'a>{
+        book: &'a Book,
+    }
+
+    {
+        let the_iliad = Book { name: "The Iliad" };
+        let the_odyssey = Book { name: "The Odyssey" };
+        let dictionary = Book { name: "Dictionary" };
+
+        let mut me = Person {book1: the_iliad, book2: the_odyssey, book3: dictionary};
+        let mut you = Person {book1: Book { name: "" }, book2: Book { name: "" }, book3: Book { name: "" }};
+        // let identityThief = me; //Causes error on next line. reference has been moved from me to identityTheif
+        println!("{}, {} and {} are my books", me.book1.name, me.book2.name, me.book3.name);
+        println!("You have no books. Here, have one of mine!");
+        you.book1 = me.book1;
+        println!("{} is now your book.", you.book1.name);
+        println!("{} and {} are still my books.", me.book2.name, me.book3.name);
+        // println!("I want it back! {} is now my book again!", me.book1.name); //Error: book1 has been moved from me to you
+        me.book1 = you.book1;
+        println!("Yay! {} is my book again!", me.book1.name);
+    }
+
+    {
+        let the_iliad = Book { name: "The Iliad" };
+        let the_odyssey = Book { name: "The Odyssey" };
+        let dictionary = Book { name: "Dictionary" };
+
+        let me = Person {book1: the_iliad, book2: the_odyssey, book3: dictionary};
+        lend(&me.book2);
+
+        fn lend(book: &Book) {
+            let you = PersonRef { book: book };
+            println!("{} is still my book, but you are borrowing it", you.book.name);
+        }
+
+        println!("Thanks for giving {} back!", me.book2.name);
+    }
+
+}
+
